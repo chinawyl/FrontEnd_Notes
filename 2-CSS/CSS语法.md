@@ -639,7 +639,7 @@ input : focus {
 
 ### 4.综合案例(小米导航栏)
 
-完成页面请[查看代码](/代码/综合案例——小米导航栏/xiaomi.html)
+完成页面请[查看代码](./代码/综合案例——小米导航栏/xiaomi.html)
 
 ### 5.CSS背景
 
@@ -739,4 +739,4 @@ background : transparent url(image.jpg) repeat-y fixed top;
 
 ### 6.综合案例(五彩导航)
 
-完成页面请[查看代码](/代码/综合案例——五彩导航/wucai.html)
+完成页面请[查看代码](./代码/综合案例——五彩导航/wucai.html)
