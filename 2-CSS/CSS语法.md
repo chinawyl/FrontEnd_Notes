@@ -150,7 +150,7 @@ p {
 
 ### 2.CSS字体属性
 
-##### 2.1 font-family
+##### 2.1 font-family(字体类型)
 
 ```css
 body {
@@ -162,7 +162,7 @@ body {
 - 一般情况下，如果有空格隔开的多个单词组成的字体，加引号
 - 建议用英文而不是中文表达字体
 
-##### 2.2 font-size
+##### 2.2 font-size(字体大小)
 
 ```css
 p{
@@ -172,7 +172,7 @@ p{
 
 - 谷歌浏览器默认的文字大小为 16px
 
-##### 2.3 font-weight
+##### 2.3 font-weight(字体粗细)
 
 | **属性值** |                          **描述**                          |
 | :--------: | :--------------------------------------------------------: |
@@ -184,7 +184,7 @@ p{
 - CSS使用font-weight属性设置字体的粗细
 - 实际开发中，一般用**数字表示粗细**
 
-##### 2.4 font-style
+##### 2.4 font-style(字体斜体)
 
 | **属性值** |              **描述**              |
 | :--------: | :--------------------------------: |
@@ -236,7 +236,7 @@ p{
 
 ### 3.CSS文本属性
 
-##### 3.1 color
+##### 3.1 color(文本颜色)
 
 ```css
 div {
@@ -252,7 +252,7 @@ div {
 |    十六进制    |      #FF0000, #FF6600，#29D794       |
 |    RGB代码     | rgb（255，0，0） 或rgb(100%，0%，0%) |
 
-##### 3.2 text-align
+##### 3.2 text-align(文本位置)
 
 ```css
 div {
@@ -268,7 +268,7 @@ div {
 | right  |     右对齐     |
 | center |    居中对齐    |
 
-##### 3.3 text-decoration
+##### 3.3 text-decoration(文本下划线)
 
 ```css
 div {
@@ -285,7 +285,7 @@ div {
 |   overline   |        上划线(几乎不用)        |
 | line-through |        删除线 (不常用)         |
 
-##### 3.4 text-indent
+##### 3.4 text-indent(文本缩进)
 
 ```css
 div {
@@ -302,7 +302,7 @@ p{
 - em是一个相对单位，就是当前元素(font-size)**1个文字的大小**，默认一个文字大小16px
 - 如果当前元素没有设置大小，则会按照父元素的一个文字大小
 
-##### 3.5 line-height
+##### 3.5 line-height(文本行间距)
 
 ```css
 p {
@@ -447,7 +447,7 @@ p {
 
 ##### 2.2 子选择器
 
-```html
+```css
 元素1 > 元素2{
     样式声明
 }
@@ -463,7 +463,7 @@ div > p{
 
 ##### 2.3 并集选择器
 
-```html
+```css
 元素1,元素2 {
     样式声明
 }
@@ -520,7 +520,7 @@ ul,div,.nav li a{
 
 `focus伪类选择器`
 
-```html
+```css
 input : focus {
     background-color:yellow;
 }
@@ -639,4 +639,104 @@ input : focus {
 
 ### 4.综合案例(小米导航栏)
 
-完成页面请[查看代码](./综合案例——小米导航栏/xiaomi.html)
+完成页面请[查看代码](/代码/综合案例——小米导航栏/xiaomi.html)
+
+### 5.CSS背景
+
+##### 5.1 background-color(背景颜色)
+
+```css
+background-color: transparent;
+```
+
+- 默认颜色是**transparent（透明）**
+
+##### 5.2 background-image(背景图片)
+
+```css
+background-image : none | url(url)
+```
+
+- **背景图片后面的地址不要忘记加URL，同时里面的路径不要加引号**。
+
+##### 5.3 background-repeat(背景平铺)
+
+```css
+background-repeat: repeat| no-repeat| repeat-x| repeat-y
+```
+
+|  参数值   |                作用                |
+| :-------: | :--------------------------------: |
+|  repeat   | 背景图像在纵向和横向上平铺(默认的) |
+| no-repeat |           背景图像不平铺           |
+| repeat-x  |        背景图像在横向上平铺        |
+| repeat-y  |         背景图像在纵向平铺         |
+
+##### 5.4 background-position(背景位置)
+
+```css
+background-position: x y;
+```
+
+- 参数：X坐标 Y坐标
+
+- 可以使用 方位名词 或者 精确单位
+
+- 注意
+
+  - 参数是方位名词
+    - 如果指定的两个值都是方位名词，则两个值前后顺序无关，比如left top和top left
+    - 如果只指定了一个方位名词，另一个值省略，则第二个值默认居中对齐
+  - 参数是精准单位
+    - 如果参数值是精确坐标，那么第一个肯定是x坐标，第二个一定是y坐标
+    - 如果只指定一个数值，那该数值一定是x坐标，另一个默认垂直居中
+
+  - 参数是混合单位
+    - 如果指定的两个值是精确单位和方位名词混合使用，则第一个值是x坐标，第二个值是y坐标
+
+##### 5.5 background-attachment(背景滚动)
+
+```css
+background-attachment : scroll | fixed
+```
+
+|  参数  |           作用           |
+| :----: | :----------------------: |
+| scroll | 背景图像是随对象内容滚动 |
+| fixed  |       背景图像固定       |
+
+##### 5.6 背景色半透明
+
+```css
+background : rgba(0,0,0,0.3);
+```
+
+- 最后一个参数是**alpha**透明度，取值范围在0~1之间
+
+- 我们习惯把0.3的 0省略掉，写为**background(0,0,0,.3);**
+
+- 背景半透明是指**盒子背景半透明**，**盒子内容不受影响**
+
+##### 5.7 背景复合写法
+
+```css
+background : transparent url(image.jpg) repeat-y fixed top;
+```
+
+- background : 背景颜色 背景图片地址 背景平铺 背景图像滚动 背景图片位置
+
+##### 5.8 背景总结
+
+|         属性          |      作用      |                        值                         |
+| :-------------------: | :------------: | :-----------------------------------------------: |
+|   background-color    |    背景颜色    |          预定义的颜色值/十六进制/RGB代码          |
+|   background-image    |    背景图片    |                   url(图片路径)                   |
+|   background-repeat   |    是否平铺    |       repeat/ no-repeat /repeat-x/repeat-y        |
+|  background-position  |    背景位置    |          length/position 分别是x 和y坐标          |
+| background-attachment |    背景附着    |         scroll(背景滚动) /fixed(背景固定)         |
+|       背景简写        |   书写更简单   | 背景颜色 背景图片地址 背景平铺 背景滚动 背景位置  |
+|     背景色半透明      | 背景颜色半透明 | background : rgba(0,0,0,0.3);**后面必须是四个值** |
+
+### 6.综合案例(五彩导航)
+
+完成页面请[查看代码](/代码/综合案例——五彩导航/wucai.html)
