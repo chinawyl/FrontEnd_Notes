@@ -740,3 +740,209 @@ background : transparent url(image.jpg) repeat-y fixed top;
 ### 6.综合案例(五彩导航)
 
 完成页面请[查看代码](./代码/综合案例——五彩导航/wucai.html)
+
+# 四、CSS第三阶段
+
+### 1.CSS三大特性
+
+##### 1.1 层叠性
+
+- 相同选择器设置相同的样式，此时一个样式就会**覆盖**另一个冲突的样式
+- 层叠性原则：**就近原则**
+
+##### 1.2 继承性
+
+- 子标签会继承父标签里面的某些样式(**text-**、**font-**、**line-**、**color**等)
+- 行高的继承
+
+```css
+/*1.5的意思：让里面所有的子元素的行高是当前文字大小的1.5倍*/
+body {
+        font:16px/1.5   Microsoft YaHei
+}
+```
+
+##### 1.3 优先级
+
+```html
+<style>	
+     div{
+        color:pink;
+     }
+     .test {
+     color:red;
+     }
+</style>
+
+<body>
+      <div class="test">test</div>
+</body>
+```
+
+- 选择器相同，则执行**层叠性**
+- 选择器不同，则按**权重**，权重不会进位
+
+|          选择器          |    权重    |
+| :----------------------: | :--------: |
+|        继承或者 *        | 0，0，0，0 |
+| 元素选择器（标签选择器） | 0，0，0，1 |
+|   类选择器，伪类选择器   | 0，0，1，0 |
+|         ID选择器         | 0，1，0，0 |
+|     行内样式style=""     | 1，0，0，0 |
+|    ！important重要的     |   无穷大   |
+
+##### 1.4 权重叠加
+
+```html
+<style>
+    /* li 的权重是 0,0,0,1  */
+     li {
+        color:green;
+     }
+
+    /* 复合选择器权重叠加，ul li权重 0,0,0,1 + 0,0,0,1 =0,0,0,2 */
+     ul li{
+        color :red;
+     }
+
+    /*  .nav li 权重 0,0,1,0 + 0,0,0,1 = 0,0,1,1 */
+    .nav li{
+        color:pink;
+    }
+<style>
+
+<body>
+    <ul class="nav">
+          <li>大猪蹄子</li>
+          <li>大肘子</li>
+          <li>猪尾巴</li>
+    </ul>
+</body>
+```
+
+### 2.盒子模型
+
+##### 2.1 盒子模型组成
+
+![003-合作模型组成](./images/003-合作模型组成.png)
+
+- border(边框)
+- content(内容)
+- padding(内边距)
+- margin(外边距)
+
+##### 2.2 border(边框)
+
+`边框属性`
+
+|     属性     |          作用          |
+| :----------: | :--------------------: |
+| border-width | 定义边框粗细，单位是px |
+| border-style |       边框的样式       |
+| border-color |        边框颜色        |
+
+- border-style属性参数
+  - none:没有边框即忽略所有边框的宽度（默认值）
+  - solid :边框为单实线（最为常用的）
+  - dashed: 边框为虚线
+  - dotted: 边框为点线
+
+`边框简写`
+
+```css
+/*没有顺序*/
+border : 1px soilid red;
+```
+
+`边框分开写`
+
+```css
+/*只设定上边框，其余同理*/
+border-top: 1px solid red;
+```
+
+`边框注意事项`
+
+- 边框会影响盒子大小
+
+- 表格间边框会重叠，解决方法如下
+
+  ```css
+  /*相邻边合在一起*/
+  border-collapse : collapse;
+  ```
+
+##### 2.3 padding(内边距)
+
+`内边距属性`
+
+|      属性      |   作用   |
+| :------------: | :------: |
+|  padding-left  | 左内边距 |
+| padding-right  | 右内边距 |
+|  padding -top  | 上内边距 |
+| padding-bottom | 下内边距 |
+
+`内边距简写`
+
+|          值的个数           |                          表达意思                          |
+| :-------------------------: | :--------------------------------------------------------: |
+|       padding : 5px;        |           1个值，代表**上下左右**都有5像素内边距           |
+|     padding :5px 10px;      |      2个值，代表上下内边距是5像素，左右内边距是10像素      |
+|   padding: 5px 10px 20px;   | 3个值，代表上内边距5像素，左右内边距10像素，下内边距20像素 |
+| padding :5px 10px 20px 30px | 4个值，上是5像素，右是10像素，下20像素，左是30像素，顺时针 |
+
+`内边距注意事项`
+
+- padding会影响盒子大小
+- 如果盒子本身没有指定width/height属性，则此时padding不会撑开盒子，影响盒子大小
+
+##### 2.4 综合案例——新浪导航
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新浪导航栏</title>
+    <style>
+        .nav {
+            height: 41px;
+            border-top: 3px solid #ff8500;
+            border-bottom: 1px solid #edeef0;
+            background-color: #fcfcfc;
+            line-height: 41px;
+        }
+
+        .nav a {
+            /* a属于行内元素 此时必须要转换 行内块元素 */
+            display: inline-block;
+            height: 41px;
+            padding: 0 20px;
+            font-size: 12px;
+            color: #4c4c4c;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            background-color: #eee;
+            color: #ff8500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="#">新浪导航</a>
+        <a href="#">手机新浪网</a>
+        <a href="#">移动客户端</a>
+        <a href="#">微博</a>
+        <a href="#">三个字</a>
+    </div>
+</body>
+
+</html>
+```
