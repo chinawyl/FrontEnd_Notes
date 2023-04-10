@@ -897,52 +897,69 @@ border-top: 1px solid red;
 - padding会影响盒子大小
 - 如果盒子本身没有指定width/height属性，则此时padding不会撑开盒子，影响盒子大小
 
-##### 2.4 综合案例——新浪导航
+##### 2.4 综合案例(新浪导航)
 
-```html
-<!DOCTYPE html>
-<html lang="en">
+完成页面请[查看代码](./代码/综合案例——新浪导航/xinlang.html)
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新浪导航栏</title>
-    <style>
-        .nav {
-            height: 41px;
-            border-top: 3px solid #ff8500;
-            border-bottom: 1px solid #edeef0;
-            background-color: #fcfcfc;
-            line-height: 41px;
-        }
+##### 2.5 margin(外边距)
 
-        .nav a {
-            /* a属于行内元素 此时必须要转换 行内块元素 */
-            display: inline-block;
-            height: 41px;
-            padding: 0 20px;
-            font-size: 12px;
-            color: #4c4c4c;
-            text-decoration: none;
-        }
+`外边距属性`
 
-        .nav a:hover {
-            background-color: #eee;
-            color: #ff8500;
-        }
-    </style>
-</head>
+|     属性      |   作用   |
+| :-----------: | :------: |
+|  margin-left  | 左外边距 |
+| margin-right  | 右外边距 |
+|  margin-top   | 上外边距 |
+| margin-bottom | 下外边距 |
 
-<body>
-    <div class="nav">
-        <a href="#">新浪导航</a>
-        <a href="#">手机新浪网</a>
-        <a href="#">移动客户端</a>
-        <a href="#">微博</a>
-        <a href="#">三个字</a>
-    </div>
-</body>
+`外边距简写`
 
-</html>
+|          值的个数          |                          表达意思                          |
+| :------------------------: | :--------------------------------------------------------: |
+|        margin: 5px;        |           1个值，代表**上下左右**都有5像素外边距           |
+|     margin: 5px 10px;      |      2个值，代表上下外边距是5像素，左右外边距是10像素      |
+|   margin: 5px 10px 20px;   | 3个值，代表上外边距5像素，左右外边距10像素，下外边距20像素 |
+| margin: 5px 10px 20px 30px | 4个值，上是5像素，右是10像素，下20像素，左是30像素，顺时针 |
+
+`块级盒子居中`
+
+```css
+/*三种写法*/
+margin-left: auto; margin-right: auto;
+
+margin: auto;
+
+margin: 0 auto;
 ```
+
+- 盒子必须制定了宽度(width)
+- 盒子**左右的外边距**都设置为 auto
+
+- 行内元素或者行内块元素水平居中给其父元素添加 text-align: center
+
+`相邻块元素外边距合并`
+
+![004-外边距合并](./images/004-外边距合并.png)
+
+- 尽量只给一个盒子添加margin值
+
+`嵌套块元素外边距塌陷`
+
+![005-外边距塌陷](./images/005-外边距塌陷.png)
+
+- 为父元素定义上边框
+
+- 为父元素定义上内边距
+
+- 为父元素添加 overflow: hidden
+
+`清除内外边距`
+
+```css
+* {
+    padding: 0;
+    margin: 0;
+}
+```
+
+- 行内元素尽量只设置左右内外边距，不要设置上下内外边距，但是转换为块级和行内块元素就可以了
